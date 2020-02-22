@@ -25,37 +25,33 @@ VM, run `vagrant status NAME`.
 ➜  kubeadm git:(master) ✗ vagrant ssh k8s-master
 Last login: Sat Jun  9 14:00:35 2018 from 10.0.2.2
 -bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
-[vagrant@k8s-master ~]$
-[vagrant@k8s-master ~]$
-[vagrant@k8s-master ~]$
-[vagrant@k8s-master ~]$ which kubeadm
+vagrant@k8s-master:~$
+vagrant@k8s-master:~$ which kubeadm
 /usr/bin/kubeadm
-[vagrant@k8s-master ~]$ which kubelet
-/usr/bin/kubelet
-[vagrant@k8s-master ~]$ which kubectl
+vagrant@k8s-master:~$ which kubectl
 /usr/bin/kubectl
-[vagrant@k8s-master ~]$
-[vagrant@k8s-master ~]$ sudo docker version
+vagrant@k8s-master:~$ which kubelet
+/usr/bin/kubelet
+vagrant@k8s-master:~$ sudo docker version
 Client:
- Version:         1.13.1
- API version:     1.26
- Package version: docker-1.13.1-63.git94f4240.el7.centos.x86_64
- Go version:      go1.9.4
- Git commit:      94f4240/1.13.1
- Built:           Fri May 18 15:44:33 2018
- OS/Arch:         linux/amd64
+ Version:           18.09.7
+ API version:       1.39
+ Go version:        go1.10.4
+ Git commit:        2d0083d
+ Built:             Fri Aug 16 14:19:38 2019
+ OS/Arch:           linux/amd64
+ Experimental:      false
 
 Server:
- Version:         1.13.1
- API version:     1.26 (minimum version 1.12)
- Package version: docker-1.13.1-63.git94f4240.el7.centos.x86_64
- Go version:      go1.9.4
- Git commit:      94f4240/1.13.1
- Built:           Fri May 18 15:44:33 2018
- OS/Arch:         linux/amd64
- Experimental:    false
-[vagrant@k8s-master ~]$
-```
+ Engine:
+  Version:          18.09.7
+  API version:      1.39 (minimum version 1.12)
+  Go version:       go1.10.4
+  Git commit:       2d0083d
+  Built:            Thu Aug 15 15:12:41 2019
+  OS/Arch:          linux/amd64
+  Experimental:     false
+vagrant@k8s-master:~$```
 
 ## Configuring Kubernetes Master node
 
