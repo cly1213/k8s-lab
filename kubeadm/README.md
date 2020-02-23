@@ -15,9 +15,9 @@ Then check all three nodes have installed `kubeadm`, `kubelet` and `kubectl`, an
 ➜  kubeadm git:(master) ✗ vagrant status
 Current machine states:
 
-k8s-master                running (virtualbox)
-k8s-node1                 running (virtualbox)
-k8s-node2                 running (virtualbox)
+k8s-master-centos         running (virtualbox)
+k8s-node1-centos          running (virtualbox)
+k8s-node2-centos          running (virtualbox)
 
 This environment represents multiple VMs. The VMs are all listed
 above with their current state. For more information about a specific
