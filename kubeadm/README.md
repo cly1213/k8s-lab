@@ -66,13 +66,15 @@ sudo systemctl enable kubelet && sudo systemctl start kubelet
 ### kubeadm init on master node
 
 ```bash
+sudo kubeadm init
+sudo kubeadm reset
 sudo kubeadm init --pod-network-cidr 172.100.0.0/16 --apiserver-advertise-address 192.168.205.120
 ```
 
 Output
 
 ```bash
-Your Kubernetes master has initialized successfully!
+Your Kubernetes control-plane has initialized successfully!
 
 To start using your cluster, you need to run the following as a regular user:
 
@@ -84,10 +86,10 @@ You should now deploy a pod network to the cluster.
 Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
   https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-You can now join any number of machines by running the following on each node
-as root:
+Then you can join any number of worker nodes by running the following on each as root:
 
-  kubeadm join --token a2dc82.7e936a7ba007f01e 10.0.0.7:6443 --discovery-token-ca-cert-hash sha256:30aca9f9c04f829a13c925224b34c47df0a784e9ba94e132a983658a70ee2914
+kubeadm join 192.168.205.120:6443 --token 8j0n2y.sudhq4e4hehggjl6 \
+    --discovery-token-ca-cert-hash sha256:e971554ed8fb754254f19327b8aa7f73931fded8860aa59b4830bc117939367e
 ```
 
 Please follow the output. and after all is done, we can get all pods running
@@ -109,15 +111,16 @@ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl versio
 Check if all pod are running. then it's OK.
 
 ```bash
-$ kubectl get pod --all-namespaces
-NAMESPACE     NAME                                 READY     STATUS    RESTARTS   AGE
-kube-system   etcd-k8s-master                      1/1       Running   0          2h
-kube-system   kube-apiserver-k8s-master            1/1       Running   0          2h
-kube-system   kube-controller-manager-k8s-master   1/1       Running   0          2h
-kube-system   kube-dns-86f4d74b45-jdgct            3/3       Running   0          2h
-kube-system   kube-proxy-88kck                     1/1       Running   0          2h
-kube-system   kube-scheduler-k8s-master            1/1       Running   0          2h
-kube-system   weave-net-t6wzf                      2/2       Running   0          45s
+[vagrant@k8s-master-centos ~]$ kubectl get pod --all-namespaces
+NAMESPACE     NAME                                        READY   STATUS    RESTARTS   AGE
+kube-system   coredns-6955765f44-99nbr                    1/1     Running   0          2m49s
+kube-system   coredns-6955765f44-nn5sl                    1/1     Running   0          2m49s
+kube-system   etcd-k8s-master-centos                      1/1     Running   0          3m1s
+kube-system   kube-apiserver-k8s-master-centos            1/1     Running   0          3m1s
+kube-system   kube-controller-manager-k8s-master-centos   1/1     Running   0          3m1s
+kube-system   kube-proxy-stzs2                            1/1     Running   0          2m48s
+kube-system   kube-scheduler-k8s-master-centos            1/1     Running   0          3m1s
+kube-system   weave-net-b9m42                             2/2     Running   0          43s
 ```
 
 ## Join worker node
@@ -125,37 +128,37 @@ kube-system   weave-net-t6wzf                      2/2       Running   0        
 Please use sudo join
 
 ```bash
-sudo kubeadm join 192.168.205.120:6443 --token buzfuy.8q20f1gleefqjnor --discovery-token-ca-cert-hash sha256:6844c346b1de821d48747e7a3fd6dc6e408ebbc9018553de85f6704949c03b85
+sudo kubeadm join 192.168.205.120:6443 --token 8j0n2y.sudhq4e4hehggjl6 --discovery-token-ca-cert-hash sha256:e971554ed8fb754254f19327b8aa7f73931fded8860aa59b4830bc117939367e
 ```
 
 After that, we can get three nodes ouput on master node
 
 ```bash
-[vagrant@k8s-master ~]$ kubectl get node
-NAME         STATUS    ROLES     AGE       VERSION
-k8s-master   Ready     master    5m        v1.10.5
-k8s-node1    Ready     <none>    40s       v1.10.5
-k8s-node2    Ready     <none>    13s       v1.10.5
+[vagrant@k8s-master-centos ~]$ kubectl get node
+NAME                STATUS   ROLES    AGE     VERSION
+k8s-master-centos   Ready    master   8m19s   v1.17.3
+k8s-node1-centos    Ready    <none>   2m2s    v1.17.3
+k8s-node2-centos    Ready    <none>   66s     v1.17.3
 ```
 
 all pod are ok include flannel
 
 ```bash
-$ kubectl get pod --all-namespaces
-NAMESPACE     NAME                                 READY     STATUS    RESTARTS   AGE
-kube-system   etcd-k8s-master                      1/1       Running   0          2h
-kube-system   kube-apiserver-k8s-master            1/1       Running   0          2h
-kube-system   kube-controller-manager-k8s-master   1/1       Running   0          2h
-kube-system   kube-dns-86f4d74b45-jdgct            3/3       Running   0          2h
-kube-system   kube-proxy-5jd2z                     1/1       Running   0          1m
-kube-system   kube-proxy-88kck                     1/1       Running   0          2h
-kube-system   kube-proxy-jpcwg                     1/1       Running   0          34s
-kube-system   kube-scheduler-k8s-master            1/1       Running   0          2h
-kube-system   weave-net-87n66                      2/2       Running   0          1m
-kube-system   weave-net-kkgq6                      2/2       Running   0          34s
-kube-system   weave-net-t6wzf                      2/2       Running   0          3m
+[vagrant@k8s-master-centos ~]$ kubectl get pod --all-namespaces
+NAMESPACE     NAME                                        READY   STATUS    RESTARTS   AGE
+kube-system   coredns-6955765f44-99nbr                    1/1     Running   0          14m
+kube-system   coredns-6955765f44-nn5sl                    1/1     Running   0          14m
+kube-system   etcd-k8s-master-centos                      1/1     Running   0          15m
+kube-system   kube-apiserver-k8s-master-centos            1/1     Running   0          15m
+kube-system   kube-controller-manager-k8s-master-centos   1/1     Running   0          15m
+kube-system   kube-proxy-skfgf                            1/1     Running   0          8m51s
+kube-system   kube-proxy-stzs2                            1/1     Running   0          14m
+kube-system   kube-proxy-wpzqv                            1/1     Running   0          7m55s
+kube-system   kube-scheduler-k8s-master-centos            1/1     Running   0          15m
+kube-system   weave-net-5bx8c                             2/2     Running   1          7m55s
+kube-system   weave-net-b9m42                             2/2     Running   0          12m
+kube-system   weave-net-gr6sv                             2/2     Running   0          8m51s
 ```
-
 
 ## Reference
 
