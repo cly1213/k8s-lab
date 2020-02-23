@@ -22,35 +22,32 @@ k8s-node2-centos          running (virtualbox)
 This environment represents multiple VMs. The VMs are all listed
 above with their current state. For more information about a specific
 VM, run `vagrant status NAME`.
-➜  kubeadm git:(master) ✗ vagrant ssh k8s-master
-Last login: Sat Jun  9 14:00:35 2018 from 10.0.2.2
--bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
-vagrant@k8s-master:~$
-vagrant@k8s-master:~$ which kubeadm
+➜  kubeadm git:(master) ✗ vagrant ssh k8s-master-centos
+[vagrant@k8s-master-centos ~]$ which kubeadm
 /usr/bin/kubeadm
-vagrant@k8s-master:~$ which kubectl
+[vagrant@k8s-master-centos ~]$ which kubectl
 /usr/bin/kubectl
-vagrant@k8s-master:~$ which kubelet
+[vagrant@k8s-master-centos ~]$ which kubelet
 /usr/bin/kubelet
-vagrant@k8s-master:~$ sudo docker version
+[vagrant@k8s-master-centos ~]$ sudo docker version
 Client:
- Version:           18.09.7
- API version:       1.39
- Go version:        go1.10.4
- Git commit:        2d0083d
- Built:             Fri Aug 16 14:19:38 2019
- OS/Arch:           linux/amd64
- Experimental:      false
+ Version:         1.13.1
+ API version:     1.26
+ Package version: docker-1.13.1-108.git4ef4b30.el7.centos.x86_64
+ Go version:      go1.10.3
+ Git commit:      4ef4b30/1.13.1
+ Built:           Tue Jan 21 17:16:25 2020
+ OS/Arch:         linux/amd64
 
 Server:
- Engine:
-  Version:          18.09.7
-  API version:      1.39 (minimum version 1.12)
-  Go version:       go1.10.4
-  Git commit:       2d0083d
-  Built:            Thu Aug 15 15:12:41 2019
-  OS/Arch:          linux/amd64
-  Experimental:     false
+ Version:         1.13.1
+ API version:     1.26 (minimum version 1.12)
+ Package version: docker-1.13.1-108.git4ef4b30.el7.centos.x86_64
+ Go version:      go1.10.3
+ Git commit:      4ef4b30/1.13.1
+ Built:           Tue Jan 21 17:16:25 2020
+ OS/Arch:         linux/amd64
+ Experimental:    false
 
 ```
 
