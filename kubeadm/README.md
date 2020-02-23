@@ -51,7 +51,8 @@ Server:
   Built:            Thu Aug 15 15:12:41 2019
   OS/Arch:          linux/amd64
   Experimental:     false
-vagrant@k8s-master:~$```
+
+```
 
 ## Configuring Kubernetes Master node
 
