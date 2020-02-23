@@ -5,22 +5,22 @@ Vagrant.require_version ">= 1.6.0"
 
 boxes = [
     {
-        :name => "k8s-master",
+        :name => "k8s-master-centos",
         :eth1 => "192.168.205.120",
         :mem => "2048",
-        :cpu => "1"
+        :cpu => "2"
     },
     {
-        :name => "k8s-node1",
+        :name => "k8s-node1-centos",
         :eth1 => "192.168.205.121",
         :mem => "2048",
-        :cpu => "1"
+        :cpu => "2"
     },
     {
-        :name => "k8s-node2",
+        :name => "k8s-node2-centos",
         :eth1 => "192.168.205.122",
         :mem => "2048",
-        :cpu => "1"
+        :cpu => "2"
     }
 
 ]
