@@ -23,6 +23,7 @@ This environment represents multiple VMs. The VMs are all listed
 above with their current state. For more information about a specific
 VM, run `vagrant status NAME`.
 ➜  kubeadm git:(master) ✗ vagrant ssh k8s-master-centos
+Last login: Sun Feb 23 19:41:09 2020 from 10.0.2.2
 [vagrant@k8s-master-centos ~]$ which kubeadm
 /usr/bin/kubeadm
 [vagrant@k8s-master-centos ~]$ which kubectl
